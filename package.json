@@ -1,8 +1,39 @@
 {
   "name": "builder-validation",
   "version": "0.0.1",
-  "description": "A library that allows developers to use classes to validate objects.",
+  "description": "Use classes to validate objects.",
+  "keywords": [
+    "nodejs",
+    "schema",
+    "validation",
+    "classes",
+    "validate",
+    "builders"
+  ],
+  "homepage": "https://github.com/slekup/builder-validation#readme",
+  "bugs": {
+    "url": "https://github.com/slekup/builder-validation/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slekup/builder-validation.git"
+  },
+  "license": "ISC",
+  "author": "Slekup",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "bin": {},
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "npm run lint:fix && npm run format && npm run build:nocheck",
     "build:nocheck": "rimraf dist && tsup",
@@ -13,37 +44,6 @@
     "precommit": "npm run lint:fix && npm run format",
     "prepare": "husky install"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/slekup/builder-validation.git"
-  },
-  "keywords": [
-    "nodejs",
-    "schema",
-    "validation",
-    "classes",
-    "validate",
-    "builders"
-  ],
-  "author": "Slekup",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/slekup/builder-validation/issues"
-  },
-  "homepage": "https://github.com/slekup/builder-validation#readme",
-  "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
-    }
-  },
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "bin": {},
-  "files": [
-    "dist"
-  ],
   "prettier": {
     "arrowParens": "always",
     "bracketSpacing": true,

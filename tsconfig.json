@@ -48,7 +48,17 @@
     // Other
     "skipLibCheck": true,
     "baseUrl": "./src",
-    "paths": {}
+    "paths": {
+      "@builders/*": [
+        "builders/*"
+      ],
+      "@typings/*": [
+        "typings/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ]
+    }
   },
   "include": [
     "src/**/*",
