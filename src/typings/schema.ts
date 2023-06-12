@@ -25,8 +25,7 @@ export type ValueTypes =
   | 'integer'
   | 'boolean'
   | 'object'
-  | 'array'
-  | 'image';
+  | 'array';
 
 export type ValueCheck = [
   ((value: string) => boolean) | ((value: string) => Promise<boolean>),
@@ -64,10 +63,6 @@ export interface IBooleanValue extends BaseValueSchema {
   type: 'boolean';
 }
 
-export interface IImageValue extends BaseValueSchema {
-  type: 'image';
-}
-
 export interface INumberValue extends BaseValueSchema {
   type: 'number';
   min?: number;
@@ -96,7 +91,6 @@ export interface IStringValue extends BaseValueSchema {
 export type ValueSchema =
   | IArrayValue<ValueSchema>
   | IBooleanValue
-  | IImageValue
   | INumberValue
   | IIntegerValue
   | IObjectValue<Record<string, ValueSchema>>
