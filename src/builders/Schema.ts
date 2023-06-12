@@ -5,7 +5,6 @@ import { ExportedSchema, ExportedValue } from '@typings/exports';
 import { ISchema } from '@typings/schema';
 import {
   testEmail,
-  testImage,
   testIpv4Address,
   testPassword,
   testPath,
@@ -16,7 +15,6 @@ import {
 import {
   ArrayValue,
   BooleanValue,
-  ImageValue,
   IntegerValue,
   NumberValue,
   ObjectValue,
@@ -24,7 +22,6 @@ import {
 } from './Value';
 import { ArrayValueOptions } from './Value/ArrayValue';
 import { BooleanValueOptions } from './Value/BooleanValue';
-import { ImageValueOptions } from './Value/ImageValue';
 import { IntegerValueOptions } from './Value/IntegerValue';
 import { NumberValueOptions } from './Value/NumberValue';
 import { ObjectValueOptions } from './Value/ObjectValue';
@@ -36,8 +33,7 @@ type ValueBuilders =
   | NumberValue
   | IntegerValue
   | BooleanValue
-  | ObjectValue<ValueBuilders>
-  | ImageValue;
+  | ObjectValue<ValueBuilders>;
 
 export type BuildersSchema = Record<string, ValueBuilders>;
 
@@ -116,17 +112,6 @@ export default class Schema {
    */
   public addObject(options: ObjectValueOptions): this {
     const value = new ObjectValue<ValueBuilders>(options);
-    this.schema[value.name] = value;
-    return this;
-  }
-
-  /**
-   * Adds a image value to the schema.
-   * @param options The options of the image value.
-   * @returns The current Schema instance.
-   */
-  public addImage(options: ImageValueOptions): this {
-    const value = new ImageValue(options);
     this.schema[value.name] = value;
     return this;
   }
@@ -317,7 +302,6 @@ export default class Schema {
 
       // Boolean validation
       if (value.type === 'boolean') {
-        // TODO: Check this works
         // Check if the schema value is a boolean
         if (typeof data[key] !== 'boolean')
           return `The field "${key}" must be a boolean.`;
@@ -325,11 +309,11 @@ export default class Schema {
 
       // Object validation
       if (value.type === 'object') {
-        // TODO: Check this works
         // Check if the schema value is an object
         if (typeof data[key] !== 'object')
           return `The field "${key}" must be an object.`;
 
+        // TODO: Check this works
         // Check if the schema value has the correct properties
         if (value.properties && Object.keys(value.properties).length > 0) {
           const result = await this.validateBase<'properties'>(
@@ -343,7 +327,6 @@ export default class Schema {
 
       // Array validation
       if (value.type === 'array') {
-        // TODO: Check this works
         // Check if the schema value is an array
         if (!Array.isArray(data[key]))
           return `The field "${key}" must be an array.`;
@@ -357,18 +340,6 @@ export default class Schema {
               return `The field "${key}" must be an array of valid options.`;
           }
         } */
-      }
-
-      // Image validation
-      if (value.type === 'image') {
-        // TODO: Check this works
-        // Check if the schema value is a string
-        if (typeof data[key] !== 'string')
-          return `The field "${key}" must be a string.`;
-
-        // Check if the schema value is a valid image
-        if (!testImage(data[key] as string))
-          return `The field "${key}" must be a valid image.`;
       }
     }
 

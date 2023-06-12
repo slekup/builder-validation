@@ -115,18 +115,3 @@ export const testPath = (path: string): boolean => {
   const pathRegex = /^\/(?:[a-zA-Z0-9_]+\/)?[a-zA-Z0-9_]*$/;
   return pathRegex.test(path);
 };
-
-/**
- * Tests if an image is valid.
- * @param image The image to test.
- * @returns True if the image is valid, false otherwise.
- */
-export const testImage = (image: string): boolean => {
-  // Check if the image is valid
-  try {
-    const imageObject = new URL(image);
-    return imageObject.href === image; // Additional check to handle relative URLs
-  } catch (err) {
-    return false;
-  }
-};
