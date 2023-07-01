@@ -18,7 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/slekup/builder-validation.git"
   },
-  "license": "ISC",
+  "license": "MIT",
   "author": "Slekup",
   "exports": {
     ".": {
