@@ -1,4 +1,4 @@
-import BaseValue, { BaseValueOptions } from '@builders/Base/BaseValue';
+import BaseValue, { BaseValueOptions } from '@builders/base/BaseValue';
 import { IIntegerValue } from '@typings/schema';
 
 export type IntegerValueOptions = BaseValueOptions & {

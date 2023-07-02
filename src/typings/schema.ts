@@ -35,6 +35,7 @@ export type ValueCheck = [
 export type StructureType = `{${string}}` | `[${string}]`;
 
 export interface BaseValueSchema {
+  name?: string;
   description?: string;
   required?: boolean;
   structure?: string;

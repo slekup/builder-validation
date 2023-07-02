@@ -1,4 +1,4 @@
-import BaseValue, { BaseValueOptions } from '@builders/Base/BaseValue';
+import BaseValue, { BaseValueOptions } from '@builders/base/BaseValue';
 import { ArrayContains, IArrayValue, ValueSchema } from '@typings/schema';
 
 export type ArrayValueOptions = BaseValueOptions & {
@@ -6,7 +6,7 @@ export type ArrayValueOptions = BaseValueOptions & {
   max?: number;
   unique?: boolean;
   contains?: ArrayContains;
-  items?: ValueSchema | ValueSchema[];
+  items?: ValueSchema[];
 };
 
 /**
@@ -21,7 +21,7 @@ export default class ArrayValue
   public max?: number;
   public unique?: boolean;
   public contains?: ArrayContains;
-  public items?: ValueSchema | ValueSchema[];
+  public items?: ValueSchema[];
 
   /**
    * Creates an instance of the ArrayValue class.

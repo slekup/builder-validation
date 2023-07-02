@@ -1,4 +1,4 @@
-import BaseValue, { BaseValueOptions } from '@builders/Base/BaseValue';
+import BaseValue, { BaseValueOptions } from '@builders/base/BaseValue';
 import { IBooleanValue } from '@typings/schema';
 
 export type BooleanValueOptions = BaseValueOptions;
