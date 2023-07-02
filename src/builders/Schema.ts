@@ -145,7 +145,7 @@ export default class Schema {
           data[key] = value.defaultValue;
           break;
         } else if (!data[key]) {
-          return `The field "${key}" has not been provided.`;
+          return `The field "${value.name ?? key}" has not been provided.`;
         }
       }
 
@@ -161,7 +161,9 @@ export default class Schema {
     // Check if all provided fields are the correct type
     for (const [key, value] of schemaFields) {
       if (typeof data[key] !== value.type)
-        return `The field "${key}" must be of type ${value.type}.`;
+        return `The field "${value.name ?? key}" must be of type ${
+          value.type
+        }.`;
     }
 
     // Check if all provided fields are valid
@@ -176,7 +178,9 @@ export default class Schema {
           ((data[key] as number) < value.min ||
             (data[key] as number) > value.max)
         )
-          return `The field "${key}" must be between ${value.min} and ${value.max}.`;
+          return `The field "${value.name ?? key}" must be between ${
+            value.min
+          } and ${value.max}.`;
 
         // Check if the schema value is above the minimum required value
         if (
@@ -184,7 +188,9 @@ export default class Schema {
           typeof data[key] === 'number' &&
           (data[key] as number) < value.min
         )
-          return `The field "${key}" must be at least ${value.min}.`;
+          return `The field "${value.name ?? key}" must be at least ${
+            value.min
+          }.`;
 
         // Check if the schema value is below the maximum required value
         if (
@@ -192,7 +198,9 @@ export default class Schema {
           typeof data[key] === 'number' &&
           (data[key] as number) > value.max
         )
-          return `The field "${key}" must be less than ${value.max}.`;
+          return `The field "${value.name ?? key}" must be less than ${
+            value.max
+          }.`;
       }
 
       // Integer validation
@@ -205,7 +213,9 @@ export default class Schema {
           ((data[key] as number) < value.min ||
             (data[key] as number) > value.max)
         )
-          return `The field "${key}" must be between ${value.min} and ${value.max}.`;
+          return `The field "${value.name ?? key}" must be between ${
+            value.min
+          } and ${value.max}.`;
 
         // Check if the schema value is above the minimum required value
         if (
@@ -213,7 +223,9 @@ export default class Schema {
           typeof data[key] === 'number' &&
           (data[key] as number) < value.min
         )
-          return `The field "${key}" must be at least ${value.min}.`;
+          return `The field "${value.name ?? key}" must be at least ${
+            value.min
+          }.`;
 
         // Check if the schema value is below the maximum required value
         if (
@@ -221,14 +233,16 @@ export default class Schema {
           typeof data[key] === 'number' &&
           (data[key] as number) > value.max
         )
-          return `The field "${key}" must be less than ${value.max}.`;
+          return `The field "${value.name ?? key}" must be less than ${
+            value.max
+          }.`;
 
         // Check if the schema value is an integer
         if (
           typeof data[key] !== 'number' ||
           !Number.isInteger(data[key] as number)
         )
-          return `The field "${key}" must be an integer.`;
+          return `The field "${value.name ?? key}" must be an integer.`;
       }
 
       // String validation
@@ -242,7 +256,7 @@ export default class Schema {
           value.options.length > 0 &&
           !value.options.includes(data[key] as string)
         )
-          return `The field "${key}" is not a valid option.`;
+          return `The field "${value.name ?? key}" is not a valid option.`;
 
         // If both min and max are provided, check if the schema value is within the range
         if (
@@ -250,47 +264,63 @@ export default class Schema {
           value.max &&
           (testVal.length < value.min || testVal.length > value.max)
         )
-          return `The field "${key}" must be between ${value.min} and ${value.max} characters.`;
+          return `The field "${value.name ?? key}" must be between ${
+            value.min
+          } and ${value.max} characters.`;
 
         // Check if the schema value has the minimum required length
         if (value.min && testVal.length < value.min)
-          return `The field "${key}" must be at least ${value.min} characters.`;
+          return `The field "${value.name ?? key}" must be at least ${
+            value.min
+          } characters.`;
 
         // Check if the schema value has the maximum required length
         if (value.max && testVal.length > value.max)
-          return `The field "${key}" must be less than ${value.max} characters.`;
+          return `The field "${value.name ?? key}" must be less than ${
+            value.max
+          } characters.`;
 
         // Test if email is valid
         if (req.test === 'email' && !testEmail(testVal))
-          return `The field "${key}" must be a valid email address.`;
+          return `The field "${
+            value.name ?? key
+          }" must be a valid email address.`;
 
         // Test if username is valid
         if (req.test === 'username' && !testUsername(testVal))
-          return `The field "${key}" must be a valid username.`;
+          return `The field "${value.name ?? key}" must be a valid username.`;
 
         // Test if password is valid
         if (req.test === 'passwordStrength' && !testPassword(testVal))
-          return `The field "${key}" is too weak to be a valid password.`;
+          return `The field "${
+            value.name ?? key
+          }" is too weak to be a valid password.`;
 
         // Test if phone number is valid
         if (req.test === 'phoneNumber' && !testPhoneNumber(testVal))
-          return `The field "${key}" must be a valid phone number.`;
+          return `The field "${
+            value.name ?? key
+          }" must be a valid phone number.`;
 
         // Test if IPv4 address is valid
         if (req.test === 'ipAddress' && !testIpv4Address(testVal))
-          return `The field "${key}" must be a valid IPv4 address.`;
+          return `The field "${
+            value.name ?? key
+          }" must be a valid IPv4 address.`;
 
         // Test if a url is valid
         if (req.test === 'url' && !testUrl(testVal))
-          return `The field "${key}" must be a valid IPv4 address.`;
+          return `The field "${
+            value.name ?? key
+          }" must be a valid IPv4 address.`;
 
         // Test if a path is valid
         if (req.test === 'path' && !testPath(testVal))
-          return `The field "${key}" must be a valid path.`;
+          return `The field "${value.name ?? key}" must be a valid path.`;
 
         // Test if the schema value is a string
         if (typeof data[key] !== 'string')
-          return `The field "${key}" must be a string.`;
+          return `The field "${value.name ?? key}" must be a string.`;
       }
 
       // Check if the schema value passes all checks
@@ -304,16 +334,14 @@ export default class Schema {
       if (value.type === 'boolean') {
         // Check if the schema value is a boolean
         if (typeof data[key] !== 'boolean')
-          return `The field "${key}" must be a boolean.`;
+          return `The field "${value.name ?? key}" must be a boolean.`;
       }
 
       // Object validation
       if (value.type === 'object') {
         // Check if the schema value is an object
         if (typeof data[key] !== 'object')
-          return `The field "${key}" must be an object.`;
-
-        // TODO: Check this works
+          return `The field "${value.name ?? key}" must be an object.`;
         // Check if the schema value has the correct properties
         if (value.properties && Object.keys(value.properties).length > 0) {
           const result = await this.validateBase<'properties'>(
@@ -329,17 +357,19 @@ export default class Schema {
       if (value.type === 'array') {
         // Check if the schema value is an array
         if (!Array.isArray(data[key]))
-          return `The field "${key}" must be an array.`;
+          return `The field "${value.name ?? key}" must be an array.`;
 
-        // TODO: Check if the schema value has the correct items
-        /* if (value.items) {
+        // Check if the schema value has the correct items
+        if (value.items && typeof value.items === 'object') {
           for (const item of data[key] as unknown[]) {
-            if (typeof item !== value.items.type)
-              return `The field "${key}" must be an array of ${value.items.type}.`;
-            if (!value.items.options.includes(item))
-              return `The field "${key}" must be an array of valid options.`;
+            const result = await this.validateBase<'items'>(
+              item as Record<string, unknown>,
+              value.items as never,
+              true
+            );
+            if (result) return result;
           }
-        } */
+        }
       }
     }
 
