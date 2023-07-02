@@ -19,13 +19,13 @@ import {
   NumberValue,
   ObjectValue,
   StringValue,
-} from './Value';
-import { ArrayValueOptions } from './Value/ArrayValue';
-import { BooleanValueOptions } from './Value/BooleanValue';
-import { IntegerValueOptions } from './Value/IntegerValue';
-import { NumberValueOptions } from './Value/NumberValue';
-import { ObjectValueOptions } from './Value/ObjectValue';
-import { StringValueOptions } from './Value/StringValue';
+} from './value';
+import { ArrayValueOptions } from './value/ArrayValue';
+import { BooleanValueOptions } from './value/BooleanValue';
+import { IntegerValueOptions } from './value/IntegerValue';
+import { NumberValueOptions } from './value/NumberValue';
+import { ObjectValueOptions } from './value/ObjectValue';
+import { StringValueOptions } from './value/StringValue';
 
 type ValueBuilders =
   | ArrayValue

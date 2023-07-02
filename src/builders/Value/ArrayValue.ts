@@ -1,4 +1,4 @@
-import BaseValue, { BaseValueOptions } from '@builders/Base/BaseValue';
+import BaseValue, { BaseValueOptions } from '@builders/base/BaseValue';
 import { ArrayContains, IArrayValue, ValueSchema } from '@typings/schema';
 
 export type ArrayValueOptions = BaseValueOptions & {
