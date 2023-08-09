@@ -16,8 +16,7 @@ export type SchemaTypes =
   | unknown[]
   | object
   | null
-  | undefined
-  | unknown;
+  | undefined;
 
 export type ValueTypes =
   | 'string'
@@ -29,7 +28,7 @@ export type ValueTypes =
 
 export type ValueCheck = [
   ((value: string) => boolean) | ((value: string) => Promise<boolean>),
-  string
+  string,
 ];
 
 export type StructureType = `{${string}}` | `[${string}]`;
@@ -78,7 +77,7 @@ export interface IIntegerValue extends BaseValueSchema {
 
 export interface IObjectValue<T> extends BaseValueSchema {
   type: 'object';
-  properties?: T | unknown;
+  properties?: T;
 }
 
 export interface IStringValue extends BaseValueSchema {
