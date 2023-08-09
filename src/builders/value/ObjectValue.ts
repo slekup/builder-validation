@@ -1,8 +1,8 @@
 import BaseValue, { BaseValueOptions } from '@builders/base/BaseValue';
-import { IObjectValue, ISchema } from '@typings/schema';
+import { IObjectValue } from '@typings/schema';
 
-export type ObjectValueOptions = BaseValueOptions & {
-  properties: ISchema;
+export type ObjectValueOptions<T> = BaseValueOptions & {
+  properties: T;
 };
 
 /**
@@ -13,15 +13,15 @@ export default class ObjectValue<T>
   implements IObjectValue<T>
 {
   public type = 'object' as const;
-  public properties: ISchema;
+  public properties: T;
 
   /**
    * Creates an instance of the ObjectValue class.
    * @param options The options for the ObjectValue class.
    */
-  public constructor(options: ObjectValueOptions) {
+  public constructor(options: ObjectValueOptions<T>) {
     super(options);
-    this.properties = {};
+    this.properties = options.properties;
   }
 
   /**

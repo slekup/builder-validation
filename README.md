@@ -8,7 +8,7 @@
 
 ---
 
-Use classes to validate objects with ease.
+A minimalist validation library for JavaScript.
 
 [![Discord Server](https://img.shields.io/discord/1028009131073880104?color=5865F2&logo=discord&logoColor=white)](https://discord.gg/p5rxxQN7DT)
 ![NPM Version](https://img.shields.io/npm/v/builder-validation.svg) ![NPM Downloads](https://img.shields.io/npm/dt/builder-validation) ![Test Status](https://github.com/slekup/builder-validation/actions/workflows/tests.yml/badge.svg) ![NPM Size](https://img.shields.io/bundlephobia/min/builder-validation)
@@ -17,7 +17,7 @@ Use classes to validate objects with ease.
 
 </div>
 
-Builder validation is a library that provides classes to build and validate objects against a schemas. It can be useful if you don't want to define your own regexes or functions to validate objects.
+A minimalist validation library for JavaScript. Builder validation is a library that provides classes to build and validate objects against a schemas. It can be useful if you don't want to define your own regexes or functions to validate objects.
 
 This library is also a part of the [express-custom](https://npmjs.com/package/express-custom) library, which is what this library was originally made for.
 

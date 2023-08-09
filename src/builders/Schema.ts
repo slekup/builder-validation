@@ -110,7 +110,7 @@ export default class Schema {
    * @param options The options of the object value.
    * @returns The current Schema instance.
    */
-  public addObject(options: ObjectValueOptions): this {
+  public addObject(options: ObjectValueOptions<ValueBuilders>): this {
     const value = new ObjectValue<ValueBuilders>(options);
     this.schema[value.name] = value;
     return this;
@@ -160,6 +160,7 @@ export default class Schema {
 
     // Check if all provided fields are the correct type
     for (const [key, value] of schemaFields) {
+      // eslint-disable-next-line valid-typeof
       if (typeof data[key] !== value.type)
         return `The field "${value.name ?? key}" must be of type ${
           value.type
