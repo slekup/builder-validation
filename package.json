@@ -1,7 +1,7 @@
 {
   "name": "builder-validation",
   "version": "0.0.3",
-  "description": "Use classes to validate objects.",
+  "description": "A minimalist validation library for JavaScript.",
   "keywords": [
     "nodejs",
     "schema",
